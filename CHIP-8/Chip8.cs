@@ -1,4 +1,5 @@
 ﻿using CHIP_8.Display;
+using CHIP_8.IO;
 using CHIP_8.Keyboard;
 
 namespace CHIP_8;
@@ -9,7 +10,7 @@ public class Chip8
     private const ushort ProgramStart = 0x200;
     private const ushort FontStartAddress = 0x50;
 
-    private readonly IKeyboard keyboard;
+    private readonly IInput input;
     private readonly IDisplay display;
     
     private readonly byte[] memory = new byte[MemorySize];
@@ -44,10 +45,10 @@ public class Chip8
         0xF0, 0x80, 0xF0, 0x80, 0x80  // F
     ];
 
-    public Chip8(IDisplay display, IKeyboard keyboard)
+    public Chip8(IIO inputOutput)
     {
-        this.display = display;
-        this.keyboard = keyboard;
+        display = inputOutput.Output;
+        input = inputOutput.Input;
         InitializeFontset();
     }
     
@@ -64,7 +65,7 @@ public class Chip8
 
     public void RunCycle()
     {
-        keyboard.UpdateKeyboard();
+        input.UpdateKeyboard();
         FetchOpcode();
         DecodeAndExecute();
     }
@@ -268,10 +269,10 @@ public class Chip8
         switch (subcode)
         {
             case 0x9E:
-                if (keyboard.IsKeyPressed(v[x])) pc += 2;
+                if (input.IsKeyPressed(v[x])) pc += 2;
                 break;
             case 0xA1:
-                if (!keyboard.IsKeyPressed(v[x])) pc += 2;
+                if (!input.IsKeyPressed(v[x])) pc += 2;
                 break;
         }
     }
@@ -281,7 +282,7 @@ public class Chip8
         switch (subcode)
         {
             case 0x07: v[x] = delayTimer; break;
-            case 0x0A: v[x] = keyboard.WaitForInput(); break;
+            case 0x0A: v[x] = input.WaitForInput(); break;
             case 0x15: delayTimer = v[x]; break;
             case 0x1E: index += v[x]; break;
             case 0x29: index = (ushort)(0x50 + 5 * v[x]); break;

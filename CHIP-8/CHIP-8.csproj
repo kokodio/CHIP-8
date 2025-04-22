@@ -6,9 +6,11 @@
         <RootNamespace>CHIP_8</RootNamespace>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="ppy.SDL3-CS" Version="2025.220.0" />
       <PackageReference Include="Raylib-cs" Version="7.0.1" />
     </ItemGroup>
 

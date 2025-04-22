@@ -1,13 +1,11 @@
 ﻿using System.Diagnostics;
 using CHIP_8;
-using CHIP_8.Display;
-using CHIP_8.Keyboard;
+using CHIP_8.IO;
 
-var display = new RaylibDisplay();
-var keyboard = new RaylibKeyboard();
-var chip = new Chip8(display, keyboard);
+var io = new ConsoleWindowsIo();
+var chip = new Chip8(io);
 
-chip.LoadRom(@"..\..\..\Content\tetris.ch8", false);
+chip.LoadRom(@"..\..\..\Content\space.ch8", false);
 
 const int iterationsPerFrame = 8;
 const int targetFps = 60;

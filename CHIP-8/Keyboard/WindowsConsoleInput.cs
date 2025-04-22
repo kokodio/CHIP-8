@@ -2,7 +2,7 @@
 
 namespace CHIP_8.Keyboard;
 
-public class WindowsConsoleKeyboard : IKeyboard
+public unsafe partial class WindowsConsoleInput : IInput
 {
     private readonly bool[] keyboard = new bool[16];
     
@@ -33,8 +33,8 @@ public class WindowsConsoleKeyboard : IKeyboard
         return keyboard[hexKey];
     }
     
-    [DllImport("user32.dll")]
-    private static extern short GetAsyncKeyState(int vKey);
+    [LibraryImport("user32.dll")]
+    private static partial short GetAsyncKeyState(int vKey);
     
     public void UpdateKeyboard()
     {

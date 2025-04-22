@@ -2,7 +2,7 @@
 
 namespace CHIP_8.Keyboard;
 
-public class RaylibKeyboard : IKeyboard
+public class RaylibInput : IInput
 {
     private readonly bool[] keyboard = new bool[16];
 
@@ -37,6 +37,9 @@ public class RaylibKeyboard : IKeyboard
     public void UpdateKeyboard()
     {
         Raylib.PollInputEvents();
+        
+        if (Raylib.WindowShouldClose()) Environment.Exit(0);
+        
         foreach (var pair in map)
         {
             keyboard[pair.Value] = Raylib.IsKeyDown(pair.Key);
