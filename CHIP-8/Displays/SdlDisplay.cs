@@ -1,7 +1,7 @@
 ﻿using SDL;
 using static SDL.SDL3;
 
-namespace CHIP_8.Display;
+namespace CHIP_8.Displays;
 
 public unsafe class SdlDisplay : IDisplay
 {

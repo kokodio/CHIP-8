@@ -1,10 +1,10 @@
-﻿using CHIP_8.Display;
-using CHIP_8.Keyboard;
+﻿using CHIP_8.Displays;
+using CHIP_8.Keyboards;
 
 namespace CHIP_8.IO;
 
-public record SdlIo : IIO
+public record SdlIo : IIo
 {
     public IDisplay Output { get; } = new SdlDisplay();
-    public IInput Input { get; } = new SdlInput();
+    public InputHandler Input { get; } = new SdlInput();
 }

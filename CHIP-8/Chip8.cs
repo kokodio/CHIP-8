@@ -1,6 +1,6 @@
-﻿using CHIP_8.Display;
+﻿using CHIP_8.Displays;
 using CHIP_8.IO;
-using CHIP_8.Keyboard;
+using CHIP_8.Keyboards;
 
 namespace CHIP_8;
 
@@ -10,7 +10,7 @@ public class Chip8
     private const ushort ProgramStart = 0x200;
     private const ushort FontStartAddress = 0x50;
 
-    private readonly IInput input;
+    private readonly InputHandler input;
     private readonly IDisplay display;
     
     private readonly byte[] memory = new byte[MemorySize];
@@ -45,7 +45,7 @@ public class Chip8
         0xF0, 0x80, 0xF0, 0x80, 0x80  // F
     ];
 
-    public Chip8(IIO inputOutput)
+    public Chip8(IIo inputOutput)
     {
         display = inputOutput.Output;
         input = inputOutput.Input;

@@ -1,8 +1,8 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace CHIP_8.Keyboard;
+namespace CHIP_8.Keyboards;
 
-public unsafe partial class WindowsConsoleInput : IInput
+public unsafe partial class WindowsConsoleInput : InputHandler
 {
     private readonly bool[] keyboard = new bool[16];
     
@@ -28,7 +28,7 @@ public unsafe partial class WindowsConsoleInput : IInput
         { ConsoleKey.C, 11 },
         { ConsoleKey.V, 15 },
     };
-    public bool IsKeyPressed(int hexKey)
+    public override bool IsKeyPressed(int hexKey)
     {
         return keyboard[hexKey];
     }
@@ -36,7 +36,7 @@ public unsafe partial class WindowsConsoleInput : IInput
     [LibraryImport("user32.dll")]
     private static partial short GetAsyncKeyState(int vKey);
     
-    public void UpdateKeyboard()
+    public override void UpdateKeyboard()
     {
         foreach (var pair in map)
         {
@@ -45,7 +45,7 @@ public unsafe partial class WindowsConsoleInput : IInput
         }
     }
 
-    public byte WaitForInput()
+    public override byte WaitForInput()
     {
         byte keyIndex;
         while (!map.TryGetValue(Console.ReadKey(true).Key, out keyIndex)) { }

@@ -1,8 +1,8 @@
 ﻿using Raylib_cs;
 
-namespace CHIP_8.Keyboard;
+namespace CHIP_8.Keyboards;
 
-public class RaylibInput : IInput
+public class RaylibInput : InputHandler
 {
     private readonly bool[] keyboard = new bool[16];
 
@@ -29,12 +29,12 @@ public class RaylibInput : IInput
         { KeyboardKey.V, 15 },
     };
 
-    public bool IsKeyPressed(int hexKey)
+    public override bool IsKeyPressed(int hexKey)
     {
         return keyboard[hexKey];
     }
 
-    public void UpdateKeyboard()
+    public override void UpdateKeyboard()
     {
         Raylib.PollInputEvents();
         
@@ -46,7 +46,7 @@ public class RaylibInput : IInput
         }
     }
 
-    public byte WaitForInput()
+    public override byte WaitForInput()
     {
         while (true)
         {

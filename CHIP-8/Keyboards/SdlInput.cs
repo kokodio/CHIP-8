@@ -1,9 +1,8 @@
 ﻿using SDL;
 using static SDL.SDL3;
 
-namespace CHIP_8.Keyboard;
-
-public unsafe class SdlInput : IInput
+namespace CHIP_8.Keyboards;
+public unsafe class SdlInput : InputHandler
 {
     private readonly bool[] keyboard = new bool[16];
 
@@ -30,12 +29,12 @@ public unsafe class SdlInput : IInput
         { SDL_Keycode.SDLK_V, 15 },
     };
 
-    public bool IsKeyPressed(int hexKey)
+    public override bool IsKeyPressed(int hexKey)
     {
         return keyboard[hexKey];
     }
 
-    public void UpdateKeyboard()
+    public override void UpdateKeyboard()
     {
         SDL_Event input;
         while (SDL_PollEvent(&input))
@@ -57,7 +56,7 @@ public unsafe class SdlInput : IInput
         }
     }
 
-    public byte WaitForInput()
+    public override byte WaitForInput()
     {
         while (true)
         {

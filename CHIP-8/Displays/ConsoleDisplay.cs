@@ -1,4 +1,4 @@
-﻿namespace CHIP_8.Display;
+﻿namespace CHIP_8.Displays;
 
 public class ConsoleDisplay : IDisplay
 {

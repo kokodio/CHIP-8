@@ -5,7 +5,7 @@ using CHIP_8.IO;
 var io = new SdlIo();
 var chip = new Chip8(io);
 
-chip.LoadRom(@"..\..\..\Content\space.ch8", false);
+chip.LoadRom(@"..\..\..\Content\tetris.ch8", false);
 
 const int iterationsPerFrame = 8;
 const int targetFps = 60;
