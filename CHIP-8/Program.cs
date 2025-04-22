@@ -2,7 +2,7 @@
 using CHIP_8;
 using CHIP_8.IO;
 
-var io = new ConsoleWindowsIo();
+var io = new SdlIo();
 var chip = new Chip8(io);
 
 chip.LoadRom(@"..\..\..\Content\space.ch8", false);
