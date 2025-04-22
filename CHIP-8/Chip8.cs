@@ -259,6 +259,8 @@ public class Chip8
                 display.Update(idx, pixel);
             }
         }
+        
+        display.Render();
     }
 
     private void HandleKeyOperations(int x, byte subcode)

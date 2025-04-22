@@ -35,7 +35,7 @@ public class ConsoleDisplay : IDisplay
             var bufferOffset = y * (Width + 1);
             for (var x = 0; x < Width; x++)
             {
-                displayBuffer[bufferOffset + x] = (byte)(pixels[rowOffset + x] ? '¶' : ' ');
+                displayBuffer[bufferOffset + x] = (byte)(pixels[rowOffset + x] ? '#' : ' ');
             }
         }
 

@@ -7,9 +7,9 @@ var display = new ConsoleDisplay();
 var keyboard = new WindowsConsoleKeyboard();
 var chip = new Chip8(display, keyboard);
 
-chip.LoadRom(@"./tetris.ch8", false);
+chip.LoadRom(@".\tetris.ch8", false);
 
-const int iterationsPerFrame = 11;
+const int iterationsPerFrame = 8;
 const int targetFps = 60;
 
 var frameTime = TimeSpan.FromMilliseconds(1000.0 / targetFps);
@@ -24,7 +24,6 @@ while (true)
     }
     
     chip.TickTimers();
-    display.Render();
     
     var sleep = frameTime - frameTimer.Elapsed;
     if (sleep > TimeSpan.Zero)
